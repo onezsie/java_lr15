@@ -28,6 +28,7 @@ public class MyController {
 
     @PostMapping(value = "/feedback")
     public ResponseEntity<Response> feedback(@RequestBody Request request) {
+
         log.info("Входящий request: " + String.valueOf(request));
 
         Response response = Response.builder().
@@ -38,6 +39,7 @@ public class MyController {
                 .errorCode("")
                 .errorMessage("")
                 .build();
+
         modifyRequestService.modifyRq(request);
         Response responseAfterModify = myModifyService.modify(response);
         log.info("Исходящий response: " + String.valueOf(response));
