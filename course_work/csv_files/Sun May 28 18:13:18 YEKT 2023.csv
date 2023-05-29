@@ -1,0 +1,2 @@
+Индекс;Долгота;Широта;Название;Время;CO;NO;NO2;SO2;H2S;O3;NH3;PM10;PM2,5;CH20;C6H6;C7H8;C8H10;C6H5Cl;C8H10_O;C8H10_MP;C6H6O;TemperatureOutside;HumidityOutside;Barometer;WindSpeed;WindDirection;Т1;Т2;TemperatureInside;InputVoltage;В;П;
+74040110;61.454167000;55.239444614;ул. Электродная/Чмз;29.04.2023 07:00;0.200000;0.2;0.25;0.006000;0.0001;0.3;0.27;0.1;;0.4;;;0.268;0.1;;0.3;;6.30;42.00;742.20;0.60;88.00;;;21.90;;;;
