@@ -9,7 +9,6 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // Скачиваем последний загруженный файл с Яндекс диска, переменной присваивается путь до этого файла.
         String path = DownloadNewFile.downloadFile(yandexToken);
-        Thread.sleep(2000);
         // Путь к файлу с нормативами
         String secondPath = "/Users/dmitryz/Desktop/java_ex/course_work/csv_files/pdk_normatives.csv";
 
@@ -20,7 +19,7 @@ public class Main {
         LinkedHashMap<String, Double> normativeMap = getNormativeMap(secondPath);
 
         // Читаем файл с нормативами и создаем список, который будет использоваться для формирования отчета
-        LinkedHashMap<String, String> normativeNames = getNormativeList(secondPath);
+        LinkedHashMap<String, String> normativeNames = getNormativeNames(secondPath);
 
         // Создаем лист с описанием обнаруженных отклонений (их наличие проверяется в методе)
         List<String> troubleList = checkValues(currentFile, normativeMap, normativeNames);
@@ -29,9 +28,7 @@ public class Main {
         // и впоседствии удален. Если отклонений не найдено, отчет формироваться не будет.
         if (!troubleList.isEmpty()) {
            String newFilePath = makeFile(troubleList, currentFile);
-           Thread.sleep(2000);
            mainPackage.SendEmail.sendEmail(googleToken, newFilePath);
-           Thread.sleep(2000);
            File file = new File(newFilePath);
            file.delete();
            System.out.println("В полученых данных были обнаружены отклонения от нормы, отчет отправлен на почту. " +
@@ -90,7 +87,7 @@ public class Main {
         return linkedHashMap;
     }
 
-    public static LinkedHashMap<String, String> getNormativeList (String path) {
+    public static LinkedHashMap<String, String> getNormativeNames (String path) {
         String csvSplitBy = ",";
         String line;
         String[] arrValues;

@@ -1,7 +1,6 @@
 package mainPackage;
 
 import download.DownloadNewFile;
-import mail.SendEmail;
 
 import java.io.*;
 import java.util.*;
@@ -12,7 +11,6 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // Скачиваем последний загруженный файл с Яндекс диска, переменной присваивается путь до этого файла.
         String path = DownloadNewFile.downloadFile(yandexToken);
-        Thread.sleep(2000);
         // Путь к файлу с нормативами
         String secondPath = "/Users/dmitryz/Desktop/java_ex/course_work/csv_files/pdk_normatives.csv";
 
@@ -32,17 +30,15 @@ public class Main {
         // и впоседствии удален. Если отклонений не найдено, отчет формироваться не будет.
         if (!troubleList.isEmpty()) {
            String newFilePath = makeFile(troubleList, currentFile);
-           Thread.sleep(2000);
-//           mail.SendEmail.sendEmail(googleToken, newFilePath);
-//           Thread.sleep(2000);
-//           File file = new File(newFilePath);
-//           file.delete();
+           mail.SendEmail.sendEmail(googleToken, newFilePath);
+           File file = new File(newFilePath);
+           file.delete();
            System.out.println("В полученых данных были обнаружены отклонения от нормы, отчет отправлен на почту. " +
                    "Работа программы завершена.");
         }
-//        else {
-//            System.out.println("В полученых данных отклонения от норм не обнаружены. Работа программы завершена.");
-//        }
+        else {
+            System.out.println("В полученых данных отклонения от норм не обнаружены. Работа программы завершена.");
+        }
     }
     
     public static LinkedHashMap<String, String> readCSV (String path) {
